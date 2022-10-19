@@ -1,0 +1,124 @@
+
+#################################
+## Running in local parameters ##
+#################################
+
+local_dataset: 'C:\Users\Natalia\Documents\01. Master\2022-SS\01. PMSD\07. Code\MICCAI\Samples'
+out_dir: 'C:\Users\Natalia\Documents\01. Master\2022-SS\01. PMSD\07. Code\SalivaryGlandSegmentation\models'
+gpus_local: 1
+
+####################################
+## Running in polyaxon parameters ##
+####################################
+
+on_polyaxon: True
+polyaxon_dataset : '/natalia_ap/original_data/HeadNeck_MICCAI2015/'  
+gpus_polyaxon: 2
+num_workers_polyaxon: 10
+
+###############################
+## Data generator parameters ##
+###############################
+
+resample_data: '111' # The folder where the data is saved, if the resample is [1,1,1] the folder is 111
+batch_size_bb : 25 
+batch_size_seg : 100 
+shuffle_train: True
+shuffle: False
+num_workers_local: 0
+
+################################
+################################
+########    Network 1   ######## 
+################################
+################################
+
+################################
+## Load Data Network 1        ##
+################################
+
+
+side_right: 'right'
+side_left: 'left'
+net1_cut_head: True
+net1_transform: False
+
+################################
+## Model parameters Network 1 ##
+################################
+
+# Unet Parameters
+net1_in_channels : 1
+net1_classes : 1
+net1_encoder_depth: 3
+net1_encoder_weights: 'imagenet'
+net1_activation: 'sigmoid'
+net1_decoder_use_batchnorm: True
+
+# Checkpoint Callback
+net1_mode: 'max'
+net1_monitoring_metric : 'val_dice'
+net1_save_top_k: 1
+net1_every_epoch: 1
+net1_save_last: True
+net1_min_delta: 0.00
+net1_patience: 3
+net1_verbose: False
+
+# Trainer
+
+net1_check_val_every_epoch: 1
+net1_log_every_step: 1
+net1_epochs: 14
+
+# Hyperparameters
+net1_learning_rate : 0.002
+# net1_loss_function : dice_loss
+# net1_metric : dice_score
+
+
+################################
+################################
+########    Network 2   ######## 
+################################
+################################
+
+################################
+## Load Data Network 2        ##
+################################
+
+net2_cut_head: False
+net2_transform: False
+
+################################
+## Model parameters Network 1 ##
+################################
+
+# Unet Parameters
+net2_in_channels : 1
+net2_classes : 1
+net2_encoder_depth: 3
+net2_encoder_weights: 'imagenet'
+net2_activation: 'sigmoid'
+net2_decoder_use_batchnorm: True
+
+# Checkpoint Callback
+net2_mode: 'max'
+net2_monitoring_metric : 'val_dice'
+net2_save_top_k: 1
+net2_every_epoch: 1
+net2_save_last: True
+net2_min_delta: 0.00
+net2_patience: 3
+net2_verbose: False
+
+# Trainer
+net2_check_val_every_epoch: 1
+net2_log_every_step: 1
+net2_epochs: 14
+
+# Hyperparameters
+net2_learning_rate : 0.002
+# net2_loss_function : dice_loss
+# net2_metric : dice_score
+

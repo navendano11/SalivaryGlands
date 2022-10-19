@@ -1,0 +1,30 @@
+---
+version: 1
+
+kind: experiment
+
+build:
+  image: pytorch/pytorch:1.11.0-cuda11.3-cudnn8-runtime
+  build_steps:
+    - python3 --version
+    - pip --version
+    - pip3 --version
+    - pip install -r requirements.txt
+
+environment:
+  resources:
+    cpu:
+      requests: 3
+      limits: 3
+    memory:
+      requests: 30000
+      limits: 62192
+    gpu:
+      requests: 2
+      limits: 2    
+
+declarations:
+  data_root: None
+
+run:
+  cmd: python -u Resample_BB.py

@@ -1,0 +1,12 @@
+pandas
+numpy
+matplotlib
+polyaxon-client==0.6.1
+tensorboard
+torch
+pytorch_lightning == 1.6.2
+#Jinja2==2.10.3
+markupsafe==2.0.1
+segmentation_models_pytorch
+SimpleITK
+scikit-image
